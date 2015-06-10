@@ -1,0 +1,10 @@
+<template>
+<h1>Welcome to ${title}</h1>
+<h2 if.bind="showOther">${otherTitle}</h2>
+
+<input value.bind="firstName" />
+<input value.bind="lastName" />
+<button class="btn btn-primary" click.trigger="toggle()">Toggle</button>
+<h1>I rule the world!</h1>
+<compose view-model="./chat" model.bind="chat" />
+</template>
