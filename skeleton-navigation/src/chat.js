@@ -1,22 +1,39 @@
+import {ObserverLocator} from "aurelia-framework";
 
 export class Chat {
-  title = "Chatathon!!!!!";
-  
-  firstName = "Nadav";
-  lastName = "Greenspan";
 
-  chat = null;
-
-  constructor() {
-    this.chat = this;
+  static inject() { return [ObserverLocator]; }
+  constructor(locator) {
+    var that = this;
+    locator.getObserver(this, 'input')
+      .subscribe(newInput =>  that.performSearch());
   }
 
-  get otherTitle() {
-    return `${this.firstName} ${this.lastName}`;
+  searchData = [
+    "Banana",
+    "Apple",
+    "Orange",
+    "Kiwi"
+  ];
+
+  results = [];
+
+  input = null;
+
+  search(input, data){
+    var results = [];
+    for(var i=0; i < data.length; i++){
+      if(data[i].includes(input)){
+        results.push(data[i]);
+      }
+    }
+    console.info("Input " + input);
+    console.info("Data" + data);
+    console.info(results);
+    return results;
   }
 
-  showOther = true;
-  toggle() {
-    this.showOther = !this.showOther;
+  performSearch(){
+     this.results = this.search(this.input, this.searchData);
   }
 }

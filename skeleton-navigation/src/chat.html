@@ -1,10 +1,13 @@
 <template>
-<h1>Welcome to ${title}</h1>
-<h2 if.bind="showOther">${otherTitle}</h2>
 
-<input value.bind="firstName" />
-<input value.bind="lastName" />
-<button class="btn btn-primary" click.trigger="toggle()">Toggle</button>
 <h1>I rule the world!</h1>
-<compose view-model="./chat" model.bind="chat" />
+<br>
+<input value.bind="input"/>
+  <button class="btn btn-primary" click.trigger="performSearch()">SEARCH</button>
+  <div style="border-style: solid; width: 200px; position:absolute; top:120px; background: lightblue" if.bind="results.length != 0">
+    <ul>
+      <li repeat.for="result of results"><a href="http://philgomez.com:9000">${result}</a></li>
+    </ul>
+  </div>
+<h1>SOME OTHER CONTENT</h1>
 </template>
